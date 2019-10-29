@@ -1,0 +1,26 @@
+version: '3'
+services:
+  eureka:
+    build: ../core-mcr/application
+    ports:
+      - "8761:8761"
+  customer:
+    build: ../core-mcr/customer
+    links:
+     - eureka
+  store:
+    build: ../core-mcr/store
+    links:
+     - eureka
+  order:
+    build: ../core-mcr/order
+    links:
+     - eureka
+  router:
+    build: ../core-mcr/router
+    links:
+     - eureka
+    ports:
+      - "8080:8080"
+
+
